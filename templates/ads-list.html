@@ -1,0 +1,113 @@
+{% include 'header.html' %}  
+{% include 'navbar.html' %} 
+{% include 'sidebar.html' %} 
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">{{ link_name }}</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">{{ link_name }}</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          
+          <div class="card">
+            <div class="card-header">
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table id="cl_tbl" class="table table-bordered table-hover" >
+                <thead>
+                  <tr>
+                    <th>Subscriber Details</th>
+                    <th>Plan</th>
+                    <th>Time Slot</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for val in advertisement %}
+                  <tr>
+                    <td>
+                      <b>{{ val.ownerName }}</b>
+                      <br/>
+                      <small>Phone Number: {{ val.phoneNumber }}</small>
+                      <br>
+                      <small>Date Acquired: {{ val.date }}</small>
+                      
+                    </td>
+                    <td>
+                      <b>{{ val.package }}</b>
+                      <br>
+                      <small>Total Fee per day: {{ val.totalFeePerDay }}</small>
+                      <br>
+                      <small>Total Fee: {{ val.totalFee }}</small>
+                    </td>
+                    <td>
+                      <small>From: {{ val.start }}</small>
+                      <br/>
+                      <small>To: {{ val.end }}</small>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <th>Subscriber Details</th>
+                    <th>Plan</th>
+                    <th>Time Slot</th>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </div>
+  <!-- /.content-wrapper -->
+  <!-- Main Footer -->
+  {% include 'footer.html' %} 
+</div>
+<!-- ./wrapper -->
+
+    <script>
+    $(function () {
+      $("#cl_tbl").DataTable({
+        "responsive": true, "lengthChange": false, "autoWidth": false,
+        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+      }).buttons().container().appendTo('#cl_tbl_wrapper .col-md-6:eq(0)');
+      $('#example2').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+      });
+    });
+  </script>
+
+</body>
+</html>
