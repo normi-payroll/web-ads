@@ -1,0 +1,610 @@
+{% include 'header.html' %}  
+{% include 'navbar.html' %} 
+{% include 'sidebar.html' %} 
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Scheduler</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">Scheduler</li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-5">
+          <div class="sticky-top mb-3">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Schedule Video Ads</h4>
+              </div>
+              <div class="card-body">
+
+                <div class="col-md-12">
+                  <div class="card card-primary">
+                    <div class="card-header border-transparent">
+                      <h3 class="card-title">Set Schedule</h3>
+                      <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                          <i class="fas fa-minus"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form timeStart -->
+          
+                    <div class="card-body">
+                      
+                      <div class="form-group">
+                        <label id="rate">Hourly </label> Hourly Rate  ₱ <b id="rateVal">500</b>
+                        
+                      </div>
+                      
+                      <div class="form-group">
+                        <label>Date Start: </label>
+                        <div class="input-group date" >
+                          <input type="date" class="form-control datetimepicker-input" id="dateStart" onchange="dateRangeHandler(this.value, document.getElementById('dateEnd').value);"/>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label>Date End:</label>
+                        <div class="input-group date" >
+                          <input type="date" class="form-control datetimepicker-input" id="dateEnd" onchange="dateRangeHandler(document.getElementById('dateStart').value, this.value);"/>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label>Time Start:</label>
+                        <div class="input-group date" >
+                          <input type="time" id="timeStart" min="01:00" max="24:00" class="form-control" onchange="timeRangeHandler(this.value,document.getElementById('timeEnd').value)" required>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label>Time End:</label>
+                        <div class="input-group date" >
+                          <input type="time" id="timeEnd"  min="01:00" max="24:00" class="form-control" onchange="timeRangeHandler(document.getElementById('timeStart').value, this.value)" required>
+                        </div>
+                      </div>
+                      
+                    </div>
+                    
+                    <div class="card-footer">
+                      <div class="card-tools">
+                        <button type="button" class="btn btn-tool float-right" data-card-widget="collapse">
+                          <i class="fas fa-minus" style="color: black;"></i>
+                        </button>
+                      </div>
+                    </div>
+          
+                  </div>
+                </div>
+          
+                <div class="col-md-12" id="otherInfo">
+                  <!-- Form Element sizes -->
+                  <div class="card card-success">
+                    <div class="card-header border-transparent">
+                      <h3 class="card-title">Other Info & Billing</h3>
+                      <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                          <i class="fas fa-minus"></i>
+                        </button>
+                      </div>
+                    </div>
+          
+                    <div class="card-body">
+                      <div class="form-group">
+                        <label>Owner Name: </label> 
+                        {% if userInfo.isAdmin %}
+                        <input  type="text" class="form-control" id="ownerName" placeholder="Owner Name" />
+                        {% else %}
+                        <input disabled type="text" class="form-control" id="ownerName" placeholder="Owner Name" />
+                        {% endif %}
+                        
+                      </div>
+
+                      <div class="form-group">
+                        <label>Company: </label> 
+                        {% if userInfo.isAdmin %}
+                        <input type="text" class="form-control" id="company" placeholder="Name of the Company"/>
+                        {% else %}
+                        <input disabled type="text" class="form-control" id="company" placeholder="Name of the Company"/>
+                        {% endif %}
+                      </div>
+
+                      <div class="form-group">
+                        <label>Ads Title: </label> 
+                        <input type="text" class="form-control" id="adsTitle" placeholder="Name of the Ads" />
+                      </div>
+
+                      <div class="form-group">
+                        <label>Video URL: </label> <small>Youtube</small> <a href="#otherInfo" id="preview" onclick="previewYoutube()">▶️</a>
+                        <input type="text" class="form-control" id="videoURL" placeholder="Youtube URL" />
+                      </div>
+
+                      <div class="form-group">
+                        <label>Phone Number: </label> <small>📞</small> 
+                        {% if userInfo.isAdmin %}
+                        <input type="text" class="form-control" id="phoneNumber" placeholder="+639 format"/>
+                        {% else %}
+                        <input disabled type="text" class="form-control" id="phoneNumber" placeholder="+639 format"/>
+                        {% endif %}
+                      </div>
+
+                      <div class="form-group" id="hmd">
+                        <label>How Many Days?</label> <b id="days"></b>
+                      </div>
+
+                      <div class="form-group" id="hmw">
+                        <label>How Many Weeks?</label> <b id="weeks"></b>
+                       </div>
+
+                      <div class="form-group" id="hmm">
+                        <label>How Many Months?</label> <b id="months"></b>
+                      </div>
+                      <div class="form-group">
+                        <label>Total Time per day: </label> <span id="totalTimePerDay">0</span> hour(s)
+                      </div>
+                      <div class="form-group">
+                        <label>Total Fee per day: </label> <span id="totalFeePerDay">0</span>
+                      </div>
+                      <div class="form-group">
+                        <label>Total Fee: </label> <span id="totalFee">0</span>
+                      </div>
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                      <div class="card-tools">
+                        <button type="button" class="btn btn-tool float-right" data-card-widget="collapse">
+                          <i class="fas fa-minus" style="color: black;"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- /.card -->
+                </div>
+          
+                <div class="col-12">
+                  <a href="#" class="btn btn-secondary">Cancel</a>
+                  <a href="#otherInfo" id="submit" class="btn btn-success float-right">Set Schedule</a>
+                </div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+          </div>
+        </div>
+        <div class="col-md-7">
+          <div class="card card-primary">
+            <div class="card-header">
+              <h4 class="card-title">See Available Schedule</h4>
+            </div>
+            <div class="card-body p-0">
+              <!-- THE CALENDAR -->
+              <div id="calendar"></div>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <div class="card card-danger">
+            <div class="card-header">
+              <h4 class="card-title">Check Video</h4>
+            </div>
+            <div class="card-body p-0">
+              <iframe width="100%" height="400" type="text/html"
+                id="srcPreview"
+                src="https://www.youtube.com/embed/AT6oSIDbGkw?autoplay=1&mute=1&loop=1&rel=0&showinfo=0&playlist=AT6oSIDbGkw" 
+                title="YouTube video player" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+              </iframe>
+            <!-- timeEnd of video preview -->
+              <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+          <!-- /.card -->
+        </div>
+        
+      <!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->
+</div>
+
+  {% include 'footer.html' %} 
+<p id="userInfo" hidden>
+  {{ userInfo }}
+</p>
+<!-- Page specific script -->
+<script>
+  var userInfo = document.getElementById("userInfo").innerHTML 
+  console.log(userInfo)
+  console.log(userInfo.replaceAll("'",'"').replace("False", '"false"').replace("True", '"true"'))
+  userInfo = JSON.parse(userInfo.replaceAll("'",'"').replace("False", '"false"').replace("True", '"true"'))
+  var phone = userInfo.phone
+  phone = phone.slice(2)
+  if(userInfo.isAdmin === "false") {
+    document.getElementById("ownerName").value = userInfo.ownerName
+    document.getElementById("company").value = userInfo.company
+    document.getElementById("phoneNumber").value = "+639"+phone
+  } 
+
+  $("#hmd").show();
+  $("#hmw").hide();
+  $("#hmm").hide();
+
+  const timeStart = document.getElementById("timeStart").value = "13:00:00";
+  const timeEnd = document.getElementById("timeEnd").value = "14:00:00";
+
+  const dateStart = document.getElementById("dateStart").value = moment(Date.now()).format("YYYY-MM-DD");
+  const dateEnd = document.getElementById("dateEnd").value = moment(Date.now()).format("YYYY-MM-DD");
+
+  const totalDays = dateRangeHandler(dateStart, dateEnd).totalDays;
+  const totalTimePerDay = timeRangeHandler(timeStart, timeEnd).totalTimePerDay;
+
+  const rateVal = parseInt(document.getElementById('rateVal').innerHTML);
+  const fee = totalFee(totalDays, totalTimePerDay, rateVal);
+
+  if(fee[0] < 0){
+    document.getElementById("timeStart").value = "08:00:00";
+    document.getElementById("timeEnd").value = "17:00:00"
+  }
+
+  document.getElementById("totalFeePerDay").innerHTML = fee[1];
+  document.getElementById("totalFee").innerHTML = fee[0];
+  
+  function totalFee(days, time, rate) {
+    const totalFeePerDay = time * rate;
+    const totalFee = parseFloat(totalFeePerDay) * parseInt(days);
+    return [totalFee, totalFeePerDay]
+  }
+
+  function dateRangeHandler(dateStart, dateEnd){
+    try {
+      if(moment(dateStart).isBefore(moment()) && dateStart !== moment(Date.now()).format("YYYY-MM-DD") ){
+        alert("Starting date must be today or in future!");
+        document.getElementById("dateStart").value = moment(Date.now()).format("YYYY-MM-DD")
+      }  
+      if(moment(dateEnd).isBefore(dateStart)){
+        alert("Ending date must be today or in future!");
+        document.getElementById("dateEnd").value = ""
+      } 
+      
+      var days = moment(dateEnd).diff(moment(dateStart), 'days')
+      var weeks = false
+      var months = false
+      if(!isNaN(days) && days >=0){
+        document.getElementById("days").innerHTML =  days + 1;
+        document.getElementById("months").innerHTML = (days / 29).toFixed();
+        document.getElementById("weeks").innerHTML = (days / 7).toFixed();
+
+        if(days < 29 && days >= 7) {
+          
+          document.getElementById("rate").innerHTML  = "Weekly";
+          $("#hmd").hide();
+          $("#hmw").show();
+          $("#hmm").hide();
+          document.getElementById("rateVal").innerHTML = 400
+        }
+        else if(days > 29) {
+          
+          document.getElementById("rate").innerHTML  = "Monthly";
+          $("#hmd").hide();
+          $("#hmw").hide()
+          $("#hmm").show();
+          document.getElementById("rateVal").innerHTML = 200
+        }
+        else {
+          document.getElementById("rate").innerHTML  = "Daily";
+          $("#hmd").show();
+          $("#hmw").hide();
+          $("#hmm").hide();
+          document.getElementById("rateVal").innerHTML = 500
+        }
+
+        
+
+        var rate = document.getElementById("rateVal").innerHTML;
+        var totalTimePerDay = document.getElementById("totalTimePerDay").innerHTML;
+        var totalFeePerDay = rate * totalTimePerDay;
+        var totalFee = rate * totalTimePerDay * (days + 1);
+        document.getElementById("totalFeePerDay").innerHTML = totalFeePerDay
+        document.getElementById("totalFee").innerHTML = totalFee;
+
+        return  days + 1
+      } 
+    } catch (err) {
+      console.log(err)
+      return 0;
+    }
+  }
+  
+  function timeRangeHandler(timeStart, timeEnd){
+    try {
+      if(moment(timeStart).isBefore(moment()) && timeStart !== moment(Date.now()).format("HH:MM:SS") ){
+        document.getElementById("dateStart").value = moment(Date.now()).format("HH:MM:SS")
+      }  
+      else if(moment(timeEnd).isBefore(timeStart)){
+        document.getElementById("dateEnd").value = moment(Date.now()).format("HH:MM:SS")
+      } 
+      else {
+        var timeStart = moment(timeStart, 'hh:mm');
+        var timeEnd = moment(timeEnd, 'hh:mm');
+
+        var totalSec = timeEnd.diff(timeStart, 'seconds');
+
+        var hours = parseInt(totalSec / 3600) % 24;
+        var minutes = parseInt(totalSec / 60) % 60;
+        var seconds = totalSec % 60;
+
+        //var totalTimePerDay = (hours < 10 ? "0" + hours : hours) + " hour and " + (minutes < 10 ? "0" + minutes : minutes) + " minutes";
+        
+        minutes = (minutes < 10 ? "0" + minutes : minutes) > 30? 5 : 0
+        var days = document.getElementById("days").innerHTML;
+        var rate = document.getElementById("rateVal").innerHTML;
+        var totalTimePerDay =  document.getElementById("totalTimePerDay").innerHTML = parseFloat((hours + "."+ minutes ))
+        var totalFeePerDat = document.getElementById("totalFeePerDay").innerHTML = rate * parseFloat((hours + "."+ minutes ));
+        var totalFee = document.getElementById("totalFee").innerHTML = rate * parseFloat((hours + "."+ minutes )) * days;
+
+        return parseFloat((hours + "."+ minutes ))
+      }
+      
+    } catch (err) {
+      console.log(err.message)
+    }
+  }
+  
+
+  function previewYoutube() {
+    const videoURL = document.getElementById("videoURL").value;
+    if(videoURL.length!==0 && videoURL.includes("https://youtu.be/") || videoURL.includes("https://www.youtube.com/")){
+      const videoID = videoURL.replace("https://www.youtube.com/embed/", "").replace("https://youtu.be/", "").replace("https://www.youtube.com/watch?v=", "")
+      document.getElementById('srcPreview').src = "https://www.youtube.com/embed/" +videoID+ "?autoplay=1&mute=1&loop=1&rel=0&showinfo=0&playlist="+videoID ;
+    } else {
+      alert("Cannot Preview Video\nIt must be a valid Youtube URL")
+    }
+  }
+
+  $(function () {
+    /* initialize the external events
+     -----------------------------------------------------------------*/
+
+    function ini_events(ele) {
+      ele.each(function () {
+
+        // create an Event Object (https://fullcalendar.io/docs/event-object)
+        // it doesn't need to have a timeStart or timeEnd
+        var eventObject = {
+          title: $.trim($(this).text()) // use the element's text as the event title
+        }
+
+        // store the Event Object in the DOM element so we can get to it later
+        $(this).data('eventObject', eventObject)
+
+        // make the event draggable using jQuery UI
+        $(this).draggable({
+          zIndex        : 1070,
+          revert        : true, // will cause the event to go back to its
+          revertDuration: 0  //  original position after the drag
+        })
+
+      })
+    }
+
+    ini_events($('#external-events div.external-event'))
+
+    /* initialize the calendar
+     -----------------------------------------------------------------*/
+    //Date for the calendar events (dummy data)
+    var date = new Date()
+    var d    = date.getDate(),
+        m    = date.getMonth(),
+        y    = date.getFullYear()
+
+    var Calendar = FullCalendar.Calendar;
+    var Draggable = FullCalendar.Draggable;
+
+    var containerEl = document.getElementById('external-events');
+    var checkbox = document.getElementById('drop-remove');
+    var calendarEl = document.getElementById('calendar');
+
+    // initialize the external events
+    // -----------------------------------------------------------------
+    getSchedule();
+    async function getSchedule(){
+      await $.ajax({
+            type: "POST",
+            url: "/api/get_schedules",
+            success: function(res) {
+              data = res.data
+              var events = []
+                for(let i=0; i< data.length; i++){
+                  const val = data[i];
+                  events.push({
+                        title          : val.title,
+                        start          : new Date(val.start),
+                        end            : new Date(val.end),
+                        url            : val.videoURL,
+                        backgroundColor: '#3c8dbc', //Primary (light-blue)
+                        borderColor    : '#3c8dbc', //Primary (light-blue),
+                        allDay         : false
+                      })
+                }
+                console.log(events)
+                
+                var calendar = new Calendar(calendarEl, {
+                  headerToolbar: {
+                    left  : 'prev,next today', 
+                    center: 'title',
+                    right : 'dayGridMonth,timeGridWeek,timeGridDay'
+                  },
+                  themeSystem: 'bootstrap',
+                  //Random default events
+                  events: events,
+                  editable  : false,
+                  droppable : false, // this allows things to be dropped onto the calendar !!!
+
+                });
+              
+                calendar.render();
+                        },
+          error: function(err) {
+            console.log(err)
+          }
+        });
+    }
+    
+    })
+  
+  function setData() {
+  
+    const dateStart = document.getElementById("dateStart").value
+    const dateEnd = document.getElementById("dateEnd").value
+    const timeStart = document.getElementById("timeStart").value
+    const timeEnd = document.getElementById("timeEnd").value
+    
+    const totalDays = dateRangeHandler(dateStart, dateEnd);
+    const totalTimePerDay = timeRangeHandler(timeStart, timeEnd);
+
+    const rateVal = parseInt(document.getElementById("rateVal").innerHTML)
+    const totalFeePerDay = rateVal * totalTimePerDay
+    const TotalFee = totalFeePerDay * totalDays
+
+    const ownerName = document.getElementById("ownerName").value
+    const title = document.getElementById("adsTitle").value
+    const videoURL = document.getElementById("videoURL").value
+    const company  = document.getElementById("company").value
+    const phoneNumber = document.getElementById("phoneNumber").value
+
+    const videoID = videoURL.replace("https://www.youtube.com/embed/", "").replace("https://youtu.be/", "").replace("https://www.youtube.com/watch?v=", "")
+    var data = [];
+
+    var currDate = moment(dateStart).startOf('day');
+    var lastDate = moment(dateEnd).startOf('day');
+
+    if(dateStart === dateEnd) {
+      data.push({
+            start: dateStart + " "+ timeStart,
+            date: moment(Date.now()).format("MMMM DD, YYYY @ hh:mm:ss A"),
+            end: dateEnd + " " + timeEnd,
+            ownerName: ownerName,
+            company: company,
+            title: title + " by "+ ownerName + " of "+ company,
+            videoURL: "https://www.youtube.com/embed/"+videoID+"?autoplay=1&mute=1&loop=1&rel=0&showinfo=0&playlist="+videoID,
+            phoneNumber: phoneNumber,
+            totalTimePerDay: totalTimePerDay,
+            totalDays: totalDays,
+            totalFeePerDay: totalFeePerDay,
+            totalFee: TotalFee,
+            package: rateVal === 500? "Daily": rateVal===400? "Weekly" : "Monthly"
+        });
+    } else {
+      data.push({
+            date: moment(Date.now()).format("MMMM DD, YYYY @ hh:mm:ss A"),
+            start: dateStart+ " "+ timeStart,
+            end: dateStart + " " + timeEnd,
+            ownerName: ownerName,
+            company: company,
+            title: title + " by "+ ownerName + " of "+ company,
+            videoURL: "https://www.youtube.com/embed/"+videoID+"?autoplay=1&mute=1&loop=1&rel=0&showinfo=0&playlist="+videoID,
+            phoneNumber: phoneNumber,
+            totalTimePerDay: totalTimePerDay,
+            totalDays: totalDays,
+            totalFeePerDay: totalFeePerDay,
+            totalFee: TotalFee,
+            package: rateVal === 500? "Daily": rateVal===400? "Weekly" : "Monthly"
+        });
+      while(currDate.add(1, 'days').diff(lastDate) <= 0) {
+        data.push({
+            date: moment(Date.now()).format("MMMM DD, YYYY @ hh:mm:ss A"),
+            start: moment(currDate.clone().toDate()).format("YYYY-MM-DD") + " "+ timeStart,
+            end:moment(currDate.clone().toDate()).format("YYYY-MM-DD") + " " + timeEnd,
+            ownerName: ownerName,
+            company: company,
+            title: title + " by "+ ownerName + " of "+ company,
+            videoURL: "https://www.youtube.com/embed/"+videoID+"?autoplay=1&mute=1&loop=1&rel=0&showinfo=0&playlist="+videoID,
+            phoneNumber: phoneNumber,
+            totalTimePerDay: totalTimePerDay,
+            totalDays: totalDays,
+            totalFeePerDay: totalFeePerDay,
+            totalFee: TotalFee,
+            package: rateVal === 500? "Daily": rateVal===400? "Weekly" : "Monthly"
+        });
+      }
+    }
+
+    return data;
+  };
+  
+  $("#submit").bind("click", ()=>{
+    const ownerName = document.getElementById("ownerName").value
+    const title = document.getElementById("adsTitle").value
+    const videoURL = document.getElementById("videoURL").value
+    const company  = document.getElementById("company").value
+    const phoneNumber = document.getElementById("phoneNumber").value
+
+    const dateStart = document.getElementById("dateStart").value
+    const dateEnd = document.getElementById("dateEnd").value
+    const timeStart = document.getElementById("timeStart").value
+    const timeEnd = document.getElementById("timeEnd").value
+    
+    const totalDays = dateRangeHandler(dateStart, dateEnd);
+    const totalTimePerDay = timeRangeHandler(timeStart, timeEnd);
+
+    const rateVal = parseInt(document.getElementById("rateVal").innerHTML)
+    const totalFeePerDay = rateVal * totalTimePerDay
+    const TotalFee = totalFeePerDay * totalDays
+
+    if(isNaN(TotalFee)){
+      alert("Please set your schedule before proceeding")
+    } 
+    else if ( ownerName.length === 0 && title.length === 0 && company.length === 0) 
+    {
+      alert("Please input the fields completely!")
+    } 
+    else if (videoURL.length!==0 && !videoURL.includes("https://youtu.be/") && !videoURL.includes("https://www.youtube.com/")) {
+      alert("Cannot Preview Video\nIt must be a valid Youtube URL")
+    } else if(phoneNumber.length === 0 || !phoneNumber.includes("+639") || phoneNumber.length!== 13) {
+      alert("Please provide a valid number with +639 format!")
+    }
+     else {
+      const dataToAdd = { data: setData() }
+      $.ajax({
+              type: "POST",
+              url: "/api/add_schedule",
+              contentType: 'application/json',
+              data: JSON.stringify(dataToAdd),
+              success: function(res) {
+                console.log(res)
+                const added = res.added
+                const msg = res.msg
+                
+                if(added === true) {
+                  alert(msg);
+                  window.location.href = "/content/ads-scheduler"
+                } else {
+                  alert(msg);
+                  window.location.href = "/content/ads-scheduler"
+                }
+              },
+              error: function(err) {
+                console.log(err)
+            }
+        });
+    }
+    
+  })
+</script>
+</body>
+</html>

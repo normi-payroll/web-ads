@@ -1,0 +1,407 @@
+{% include 'Landing/headers.html' %}  
+<body data-spy="scroll" data-target=".fixed-top">
+    
+    <!-- Preloader -->
+	<div class="spinner-wrapper">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <!-- end of preloader -->
+    
+
+    <!-- Navigation -->
+    {% include 'Landing/navbar.html' %}  
+    <!-- end of navigation -->
+
+
+    <!-- Header -->
+    {% include 'Landing/LandingHeader.html' %}  
+    <!-- end of header -->
+
+
+    <!-- Customers -->
+    <div class="slider-1">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    
+                    <!-- Image Slider -->
+                    <div class="slider-container">
+                        <div class="swiper-container image-slider">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                        <img class="img-fluid" src="{{ url_for('static', filename = 'landing/images/customer-logo-1.png') }}" alt="alternative">
+                                </div>
+                                <div class="swiper-slide">
+                                        <img class="img-fluid" src="{{ url_for('static', filename = 'landing/images/customer-logo-2.png') }}" alt="alternative">
+                                </div>
+                                <div class="swiper-slide">
+                                        <img class="img-fluid" src="{{ url_for('static', filename = 'landing/images/customer-logo-3.png') }}" alt="alternative">
+                                </div>
+                                <div class="swiper-slide">
+                                        <img class="img-fluid" src="{{ url_for('static', filename = 'landing/images/customer-logo-4.png') }}" alt="alternative">
+                                </div>
+                                <div class="swiper-slide">
+                                        <img class="img-fluid" src="{{ url_for('static', filename = 'landing/images/customer-logo-5.png') }}" alt="alternative">
+                                </div>
+                                <div class="swiper-slide">
+                                        <img class="img-fluid" src="{{ url_for('static', filename = 'landing/images/customer-logo-6.png') }}" alt="alternative">
+                                </div>
+                            </div> <!-- end of swiper-wrapper -->
+                        </div> <!-- end of swiper container -->
+                    </div> <!-- end of slider-container -->
+                    <!-- end of image slider -->
+
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of slider-1 -->
+    <!-- end of customers -->
+
+
+    <!-- Description -->
+    <div class="cards-1" id="features">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="above-heading">DESCRIPTION</div>
+                    <h2 class="h2-heading">Marketing Will Bring More Qualified Leads Into Sales</h2>
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <!-- Card -->
+                    <div class="card">
+                        <div class="card-image">
+                            <img class="img-fluid" src="{{ url_for('static', filename = 'landing/images/description-1.png') }}" alt="alternative">
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">Online Advertisement Process</h4>
+                            <p>You can apply and subscribe to our billboard advertisement through online website.</p>
+                        </div>
+                    </div>
+                    <!-- end of card -->
+
+                    <!-- Card -->
+                    <div class="card">
+                        <div class="card-image">
+                            <img class="img-fluid" src="{{ url_for('static', filename = 'landing/images/description-2.png') }}" alt="alternative">
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">LED Billboard Advertisement</h4>
+                            <p>We will advertise your products and services for your sales and marketing.</p>
+                        </div>
+                    </div>
+                    <!-- end of card -->
+
+                    <!-- Card -->
+                    <div class="card">
+                        <div class="card-image">
+                            <img class="img-fluid" src="{{ url_for('static', filename = 'landing/images/description-3.png') }}" alt="alternative">
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">Photo and Video Editing</h4>
+                            <p>We edit photos and videos with what you need and want.</p>
+                        </div>
+                    </div>
+                    <!-- end of card -->
+
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of cards-1 -->
+    <!-- end of description -->
+
+      <!-- Pricing -->
+    <div id="pricing" class="cards-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2 class="h2-heading">PRICING</h2>
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <!-- Card-->
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-title">DAILY</div>
+                            <div class="price"><span class="currency">₱</span><span class="value">500.00</span></div>
+                            <div class="frequency">per hour</div>
+                            <div class="divider"></div>
+                            <ul class="list-unstyled li-space-lg">
+                                <li class="media">
+                                    <i class="fas fa-check"></i><div class="media-body">Free 30 minutes of time on selected day</div>
+                                </li>
+                                
+                                <li class="media">
+                                    <i class="fas fa-times"></i><div class="media-body">Prioritize Video Ads</div>
+                                </li>
+                                <li class="media">
+                                    <i class="fas fa-times"></i><div class="media-body">Lower Rate</div>
+                                </li>
+                                <li class="media">
+                                    <i class="fas fa-times"></i><div class="media-body">Products and Services Marketing Popularity</div>
+                                </li>
+                            </ul>
+                            <div class="button-wrapper">
+                                <a class="btn-solid-reg page-scroll" href="#subscribe">SUBSCRIBE</a>
+                            </div>
+                        </div>
+                    </div> <!-- end of card -->
+                    <!-- end of card -->
+
+                    <!-- Card-->
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-title">WEEKLY</div>
+                            <div class="price"><span class="currency">₱</span><span class="value">400.00</span></div>
+                            <div class="frequency">per hour</div>
+                            <div class="divider"></div>
+                            <ul class="list-unstyled li-space-lg">
+                                <li class="media">
+                                    <i class="fas fa-check"></i><div class="media-body">Free 60 minutes of time on selected day</div>
+                                </li>
+                                
+                                <li class="media">
+                                    <i class="fas fa-check"></i><div class="media-body">Prioritize Video Ads</div>
+                                </li>
+                                <li class="media">
+                                    <i class="fas fa-check"></i><div class="media-body">Lower Rate</div>
+                                </li>
+                                <li class="media">
+                                    <i class="fas fa-times"></i><div class="media-body">Products and Services Marketing Popularity</div>
+                                </li>
+                            </ul>
+                            <div class="button-wrapper">
+                                <a class="btn-solid-reg page-scroll" href="#subscribe">SUBSCRIBE</a>
+                            </div>
+                        </div>
+                    </div> <!-- end of card -->
+                    <!-- end of card -->
+
+                    <!-- Card-->
+                    <div class="card">
+                        <!--<div class="label">
+                            <p class="best-value">Best Value</p>
+                        </div> -->
+                        <div class="card-body">
+                            <div class="card-title">MONTHLY</div>
+                            <div class="price"><span class="currency">₱</span><span class="value">200.00</span></div>
+                            <div class="frequency">per hour</div>
+                            <div class="divider"></div>
+                            <ul class="list-unstyled li-space-lg">
+                                <li class="media">
+                                    <i class="fas fa-check"></i><div class="media-body">Free 90 minutes of time on selected day</div>
+                                </li>
+                                
+                                <li class="media">
+                                    <i class="fas fa-check"></i><div class="media-body">Prioritize Video Ads</div>
+                                </li>
+                                <li class="media">
+                                    <i class="fas fa-check"></i><div class="media-body">Lower Rate</div>
+                                </li>
+                                <li class="media">
+                                    <i class="fas fa-check"></i><div class="media-body">Products and Services Marketing Popularity</div>
+                                </li>
+                            </ul>
+                            <div class="button-wrapper">
+                                <a class="btn-solid-reg page-scroll" href="#subscribe">SUBSCRIBE</a>
+                            </div>
+                        </div>
+                    </div> <!-- end of card -->
+                    <!-- end of card -->
+
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of cards-2 -->
+
+    <!-- end of pricing -->
+       <!-- Video -->
+    <div id="video" class="basic-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <!-- Video Preview -->
+                    <div class="image-container">
+                        <iframe width="700" height="400" type="text/html"
+                            id="srcPreview"
+                            src="https://www.youtube.com/embed/AT6oSIDbGkw?autoplay=1&mute=1&loop=1&rel=0&showinfo=0&playlist=AT6oSIDbGkw" 
+                            title="YouTube video player" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div> <!-- end of image-container -->
+                    <!-- end of video preview -->
+
+                    <div class="p-heading">What better way to show off  products and services available to users in a video.</div>  
+                 </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of basic-2 -->
+    <!-- end of video -->
+
+    <!-- SUBSCRIBE / SIGNUP -->
+    <div class="form" id="subscribe">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text-container">
+                        <div class="above-heading">SIGN UP</div>
+                        <h2>Fill In Form</h2>
+
+                        <!-- Newsletter Form -->
+                        <form id="subscirbeForm" data-toggle="validator" data-focus="false">
+                            <div class="form-group">
+                                <input type="text" class="form-control-input" id="ownerName" required>
+                                <label class="label-control" for="ownerName">Name</label>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control-input" id="company" required>
+                                <label class="label-control" for="company">Business Name</label>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control-input" id="email" required>
+                                <label class="label-control" for="company">Email</label>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control-input" id="phone" required>
+                                <label class="label-control" for="phone">Phone Number</label>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control-input" id="password" required>
+                                <label class="label-control" for="password">Password</label>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                            <div class="form-group checkbox">
+                                <input type="checkbox" id="nterms" value="Agreed-to-Terms" required>I've read and agree to Group2's written <a href="#subscribe">Privacy Policy</a> and <a href="#subscribe">Terms Conditions</a> 
+                                <div class="help-block with-errors"></div>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="form-control-submit-button">SUBSCRIBE</button>
+                            </div>
+                            <div class="form-message">
+                                <div id="nmsgSubmit" class="h3 text-center hidden"></div>
+                            </div>
+                        </form>
+                        <!-- end of newsletter form -->
+
+                    </div> <!-- end of text-container -->
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="icon-container">
+                        <span class="fa-stack">
+                            <a href="https://facebook.com">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-facebook-f fa-stack-1x"></i>
+                            </a>
+                        </span>
+                        <span class="fa-stack">
+                            <a href="https://youtube.com">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-youtube fa-stack-1x"></i>
+                            </a>
+                        </span>
+                        <span class="fa-stack">
+                            <a href="https://instagram.com">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-instagram fa-stack-1x"></i>
+                            </a>
+                        </span>
+                        
+                    </div> <!-- end of col -->
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of form -->
+    <!-- end of newsletter -->
+
+    <!-- Footer -->
+    <svg class="footer-frame" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 1920 79"><defs><style>.cls-2{fill:#5f4def;}</style></defs><title>footer-frame</title><path class="cls-2" d="M0,72.427C143,12.138,255.5,4.577,328.644,7.943c147.721,6.8,183.881,60.242,320.83,53.737,143-6.793,167.826-68.128,293-60.9,109.095,6.3,115.68,54.364,225.251,57.319,113.58,3.064,138.8-47.711,251.189-41.8,104.012,5.474,109.713,50.4,197.369,46.572,89.549-3.91,124.375-52.563,227.622-50.155A338.646,338.646,0,0,1,1920,23.467V79.75H0V72.427Z" transform="translate(0 -0.188)"/></svg>
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="footer-col first">
+                        <h4>Web-Based Advertisement</h4>
+                        <p class="p-small">A Group 2 Capstone Project from Northern Mindanao Colleges, Inc.</p>
+                    </div>
+                </div> <!-- end of col -->
+                <div class="col-md-4">
+                    <div class="footer-col middle">
+                        <h4>Important Links</h4>
+                        <ul class="list-unstyled li-space-lg p-small">
+                            <li class="media">
+                                <i class="fas fa-square"></i>
+                                <div class="media-body">Read our <a class="white" href="#">Terms & Conditions</a>, <a class="white" href="#">Privacy Policy</a></div>
+                            </li>
+                        </ul>
+                    </div>
+                </div> <!-- end of col -->
+                <div class="col-md-4">
+                    <div class="footer-col last">
+                        <h4>Contact</h4>
+                        <ul class="list-unstyled li-space-lg p-small">
+                            <li class="media">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <div class="media-body">A. Atega Street, Cabadbaran City, 8605 Agusan Del Norte</div>
+                            </li>
+                            <li class="media">
+                                <i class="fas fa-envelope"></i>
+                                <div class="media-body">
+                                    <a class="white" href="mailto:micodatuganmyawk21@gmail.com">micodatuganmyawk21@gmail.com</a> 
+                                </div>
+                            </li>
+                            <li class="media">
+                                <i class="fas fa-phone"></i>
+                                <div class="media-body">
+                                    <a class="white" href="tel:09308091332">09308091332</a> 
+                                </div>
+                            </li>
+                        </ul>
+                    </div> 
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of footer -->  
+    <!-- end of footer -->
+
+
+    <!-- Copyright -->
+    <div class="copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <p class="p-small">Copyright © 2022 <a href="/">Group 2</a></p>
+                </div> <!-- end of col -->
+            </div> <!-- enf of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of copyright --> 
+    <!-- end of copyright -->
+    
+    	
+    <!-- Scripts -->
+    <script src="{{ url_for('static', filename = 'landing/js/jquery.min.js') }}"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
+    <script src="{{ url_for('static', filename = 'landing/js/popper.min.js') }}"></script> <!-- Popper tooltip library for Bootstrap -->
+    <script src="{{ url_for('static', filename = 'landing/js/bootstrap.min.js') }}"></script> <!-- Bootstrap framework -->
+    <script src="{{ url_for('static', filename = 'landing/js/jquery.easing.min.js') }}"></script> <!-- jQuery Easing for smooth scrolling between anchors -->
+    <script src="{{ url_for('static', filename = 'landing/js/swiper.min.js') }}"></script> <!-- Swiper for image and text sliders -->
+    <script src="{{ url_for('static', filename = 'landing/js/jquery.magnific-popup.js') }}"></script> <!-- Magnific Popup for lightboxes -->
+    <script src="{{ url_for('static', filename = 'landing/js/validator.min.js') }}"></script> <!-- Validator.js - Bootstrap plugin that validates forms -->
+    <script src="{{ url_for('static', filename = 'landing/js/scripts.js') }}"></script> <!-- Custom scripts -->
+</body>
+</html>

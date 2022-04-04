@@ -1,0 +1,7 @@
+Flask
+flask_socketio
+gunicorn==19.6.0
+pymongo[srv]
+prettyprinter
+flask_session
+twilio

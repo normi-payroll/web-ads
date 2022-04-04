@@ -1,0 +1,41 @@
+POST http://localhost:8080/api/add_subscriber
+Content-Type: application/json
+
+{
+    "data": {
+        "email": "admin",
+        "phone": "admin",
+        "password": "admin",
+        "isAdmin": true,
+        "ownerName": "Mico Datugan",
+        "company": "admin"
+    }
+}
+###
+POST http://localhost:8080/api/get_schedules
+### 
+POST http://localhost:8080/api/add_schedule
+Content-Type: application/json
+
+{
+    "title"         : "Test",
+    "start"          : "2022-03-25 8:00:00",
+    "end"            : "2022-03-25 9:00:00"
+}
+
+###+639917188904
+POST http://localhost:8080/test
+Content-Type: application/json
+
+{
+    "data": {
+        "to": "+639101064727",
+        "msg": "testing",
+        "later": false,
+        "year": "2022",
+        "month": "03",
+        "day": "28",
+        "hour": "10",
+        "minutes": "00"
+    }
+}

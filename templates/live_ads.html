@@ -1,0 +1,52 @@
+<div>
+<center>
+  <iframe type="text/html"
+    id="video"
+    src="https://www.youtube.com/embed/AT6oSIDbGkw?autoplay=1&mute=1&loop=1&rel=0&showinfo=0&playlist=AT6oSIDbGkw" 
+    title="YouTube video player" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+    allowfullscreen>
+  </iframe>
+</center>
+</div>
+<p id="ads" hidden>{{ ads }}</p>
+<script src="{{ url_for('static', filename = 'plugins/jquery/jquery.min.js') }}"></script>
+<script src="{{ url_for('static', filename = 'plugins/moment/moment.min.js') }}"></script>
+<script>
+$(function(){
+  $('#video').css({ width: $(window).innerWidth() * .98 + 'px', height: $(window).innerHeight() * .98+ 'px' });
+
+  // If you want to keep full screen on window resize
+  $(window).resize(function(){
+    $('#video').css({ width: $(window).innerWidth() + 'px', height: $(window).innerHeight() + 'px' });
+  });
+});
+
+const defaultSRC = "https://www.youtube.com/embed/AT6oSIDbGkw?autoplay=1&mute=1&loop=1&rel=0&showinfo=0&playlist=AT6oSIDbGkw"
+
+var vidList = []
+var ads = document.getElementById("ads").innerHTML
+ads = ads.replaceAll("'", '"')
+ads = JSON.parse(ads)
+var now = moment(Date.now()).format("YYYY-MM-DD HH")
+var currentAds = ads.find(({ start })=> start.includes(now))
+
+setInterval(()=>{
+  var now = moment(Date.now()).format("YYYY-MM-DD HH")
+  var schedAds = ads.find(({ start, end })=> start.includes(now))
+  var currSRC =  document.getElementById('video').src
+  if(schedAds !==undefined){
+    const newSRC = schedAds.videoURL
+    if(!currSRC.includes(newSRC)){
+      document.getElementById('video').src = newSRC
+    }
+  } else {
+    if(!defaultSRC.includes(currSRC)) {
+      document.getElementById('video').src = defaultSRC
+    }
+  }
+  
+},3000)
+
+</script>
