@@ -21,9 +21,13 @@
 
   <!-- Main content -->
   <section class="content">
-    <div class="container-fluid">
+    <div class="container-fluid">\
       <div class="row">
+        {% if userInfo.isAdmin %}
         <div class="col-md-5">
+        {% else %}
+        <div class="col-md-5" hidden>
+        {% endif %}
           <div class="sticky-top mb-3">
             <div class="card">
               <div class="card-header">
@@ -184,7 +188,11 @@
             </div>
           </div>
         </div>
+        {% if userInfo.isAdmin %}
         <div class="col-md-7">
+        {% else %}
+        <div class="col-md-12">
+        {% endif %}
           <div class="card card-primary">
             <div class="card-header">
               <h4 class="card-title">See Available Schedule</h4>
@@ -195,7 +203,11 @@
             </div>
             <!-- /.card-body -->
           </div>
+        {% if userInfo.isAdmin %} 
           <div class="card card-danger">
+        {% else %}
+          <div class="card card-danger" hidden>
+        {% endif %}
             <div class="card-header">
               <h4 class="card-title">Check Video</h4>
             </div>
@@ -215,7 +227,6 @@
         </div>
           <!-- /.card -->
         </div>
-        
       <!-- /.row -->
     </div><!-- /.container-fluid -->
   </section>
@@ -234,7 +245,7 @@
   userInfo = JSON.parse(userInfo.replaceAll("'",'"').replace("False", '"false"').replace("True", '"true"'))
   var phone = userInfo.phone
   phone = phone.slice(2)
-  if(userInfo.isAdmin === "false") {
+  if(!userInfo.isAdmin) {
     document.getElementById("ownerName").value = userInfo.ownerName
     document.getElementById("company").value = userInfo.company
     document.getElementById("phoneNumber").value = "+639"+phone
