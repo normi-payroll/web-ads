@@ -8,9 +8,9 @@ from datetime import datetime
 #import os
 from twilio.rest import Client
 
-account_sid = "AC9653bc4a80954b9a4a5f7b7c7e0143a7"
-auth_token = "d38bed2ce11328f3e57e4054cc92ab32"
-mssid ="MGcb90ca8fa7907b088770bfcaa805e582"
+account_sid = os.environ['TWILIO_ACCOUNT_SID']
+auth_token = os.environ['TWILIO_AUTH_TOKEN']
+mssid = os.environ['TWILIO_MSSID']
 client = Client(account_sid, auth_token)
 
 cloud = "mongodb+srv://user:pass@cluster0.bb3sk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
